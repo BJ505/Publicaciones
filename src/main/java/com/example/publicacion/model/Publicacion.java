@@ -1,7 +1,5 @@
 package com.example.publicacion.model;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +18,6 @@ public class Publicacion {
     private String titulo;
     @Column(name="fechaPublicacion")
     private String fechaPublicacion;
-
-    private List<Comentarios> comentarios;
-    private double calificacionPromedio;
 
     //Getters and setters
     public Long getId() {
