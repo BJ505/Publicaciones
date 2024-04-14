@@ -1,4 +1,4 @@
-package com.example.publicacion;
+package com.example.publicacion.model;
 
 public class Comentarios {
     private String comentario;
