@@ -1,10 +1,15 @@
 package com.example.publicacion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,9 +23,10 @@ public class Comentarios {
     private String comentario;
     @Column(name="Calificacion")
     private int calificacion;
-    @Column(name="PublicacionId")
-    private int publicacionId;
-    
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "publicacion_id")
+    private Publicacion publicacion;
     //Getters and setters
     public Long getId() {
         return id;
@@ -33,8 +39,8 @@ public class Comentarios {
         return calificacion;
     }
 
-    public int getPublicacion() {
-        return publicacionId;
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
     public void setId(Long id){
@@ -49,7 +55,7 @@ public class Comentarios {
         this.calificacion = calificacion;
     }
 
-    public void setPublicacionId(int publicacionId){
-        this.publicacionId = publicacionId;
+    public void setPublicacion(Publicacion publicacion){
+        this.publicacion = publicacion;
     }
 }

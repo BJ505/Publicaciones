@@ -16,41 +16,38 @@ public class PublicacionController {
 
     @Autowired
     private PublicacionService publicacionService;
-    
+
     @Autowired
     private ComentarioService comentarioService;
 
+    @GetMapping
+    public List<Publicacion> getAllPublicaciones() {
+        return publicacionService.getPublicaciones();
+    }
+
+    //Traer todas las publicaciones (solo campos de la tabla PUBLICACIONES)
     @GetMapping("/publicaciones")
     public List<Publicacion> getPublicaciones() {
         return publicacionService.getPublicaciones();
     }
 
+    //Traer una publicacion (por Id)
     @GetMapping("/publicaciones/{id}")
     public Optional<Publicacion> getPublicacionId(@PathVariable Long id) {
         return publicacionService.getPublicacionId(id);
     }
 
+    //Traer todos los comentarios (solo campos de la tabla COMENTARIOS)
     @GetMapping("/comentarios")
     public List<Comentarios> getComentarios() {
         return comentarioService.getComentarios();
     }
 
+    //Traer un solo comentario (por Id)
     @GetMapping("/comentarios/{id}")
     public Optional<Comentarios> getComentarios(@PathVariable Long id) {
         return comentarioService.getComentarioId(id);
     }
 
-    // private double promCalificaciones(double [] calificaciones) {
-    //     //set variable para almacernar la suma de todas las calificaciones
-    //     double suma = 0;
-    //     //set cantidad de calificaciones
-    //     int cantCalificaciones = calificaciones.length;
-    //     //iterar calificaciones para obtener el total
-    //     for (int i = 0; i< calificaciones.length; i++){
-    //         suma = suma+calificaciones[i];
-    //     }
-    //     double prom = suma/cantCalificaciones;
-    //     //retornar promedio (suma calificaciones / cantCalificaciones)
-    //     return prom;
-    // }
+    
 }
