@@ -25,7 +25,11 @@ public class PublicacionServiceImpl implements PublicacionService {
             for (Comentarios ele : element.getComentarios()){
                 calificaciones.add(ele.getCalificacion());
             }
-            element.setPromedio(promCalificaciones(calificaciones));
+            if(!calificaciones.isEmpty()){
+                element.setPromedio(promCalificaciones(calificaciones));
+            }else{
+                element.setPromedio(0);
+            }
         }
         return getAll;
     }
@@ -37,7 +41,12 @@ public class PublicacionServiceImpl implements PublicacionService {
         for (Comentarios ele : getById.get().getComentarios()){
             calificaciones.add(ele.getCalificacion());
         }
-        getById.get().setPromedio(promCalificaciones(calificaciones));
+        if(!calificaciones.isEmpty()){
+            getById.get().setPromedio(promCalificaciones(calificaciones));
+        }else{
+            getById.get().setPromedio(0);
+        }
+        
         return getById;
     }
 
@@ -53,5 +62,27 @@ public class PublicacionServiceImpl implements PublicacionService {
         double prom = Math.floor((suma/cantCalificaciones)*10)/10.0;
         //retornar promedio (suma calificaciones / cantCalificaciones)
         return prom;
+    }
+
+    @Override
+    public Publicacion createPublicacion(Publicacion publicacion) {
+        return publicacionRepository.save(publicacion);
+    }
+
+    @Override
+    public Publicacion updatePublicacion(Long id, Publicacion publicacion) {
+        if(publicacionRepository.existsById(id)){
+            publicacion.setId(id);
+            return publicacionRepository.save(publicacion);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void deletePublicacion(Long id) {
+        if(publicacionRepository.existsById(id)){
+            publicacionRepository.deleteById(id);
+        }
     }
 }

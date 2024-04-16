@@ -9,6 +9,12 @@ import com.example.publicacion.service.PublicacionService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 
 @RestController
@@ -25,6 +31,7 @@ public class PublicacionController {
         return publicacionService.getPublicaciones();
     }
 
+    //---------PUBLICACIONES-------------
     //Traer todas las publicaciones (solo campos de la tabla PUBLICACIONES)
     @GetMapping("/publicaciones")
     public List<Publicacion> getPublicaciones() {
@@ -37,6 +44,23 @@ public class PublicacionController {
         return publicacionService.getPublicacionId(id);
     }
 
+    @PostMapping("/publicaciones")
+    public Publicacion createPublicacion(@RequestBody Publicacion publicacion) {
+        return publicacionService.createPublicacion(publicacion);
+    }
+
+    @PutMapping("/publicaciones/{id}")
+    public Publicacion updatePublicacion(@PathVariable Long id, @RequestBody Publicacion publicacion) {
+        return publicacionService.updatePublicacion(id, publicacion);
+    }
+    
+    @DeleteMapping("/publicaciones/{id}")
+    public void deletePublicacion(@PathVariable Long id) {
+        publicacionService.deletePublicacion(id);
+    }
+    
+
+    //---------COMENTARIOS-------------
     //Traer todos los comentarios (solo campos de la tabla COMENTARIOS)
     @GetMapping("/comentarios")
     public List<Comentarios> getComentarios() {
@@ -49,5 +73,18 @@ public class PublicacionController {
         return comentarioService.getComentarioId(id);
     }
 
-    
+    @PostMapping("/comentarios/{idPublicacion}")
+    public Comentarios createComentario(@PathVariable Long idPublicacion,@RequestBody Comentarios comentarios) {
+        return comentarioService.createComentario(idPublicacion,comentarios);
+    }
+
+    @PutMapping("/comentarios/{idComentario}/{idPublicacion}")
+    public Comentarios updateComentario(@PathVariable Long idComentario,@PathVariable Long idPublicacion, @RequestBody Comentarios comentarios) {
+        return comentarioService.updateComentario(idComentario,idPublicacion, comentarios);
+    }
+
+    @DeleteMapping("/comentarios/{id}")
+    public void deleteComentarios(@PathVariable Long id) {
+        comentarioService.deleteComentarios(id);
+    }    
 }
