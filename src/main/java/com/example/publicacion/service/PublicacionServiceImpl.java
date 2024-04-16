@@ -50,20 +50,6 @@ public class PublicacionServiceImpl implements PublicacionService {
         return getById;
     }
 
-    private double promCalificaciones( ArrayList<Integer> calificaciones) {
-        //set variable para almacernar la suma de todas las calificaciones
-        double suma = 0;
-        //set cantidad de calificaciones
-        int cantCalificaciones = calificaciones.size();
-        //iterar calificaciones para obtener el total
-        for (int calificacion : calificaciones){
-            suma = suma+calificacion;
-        }
-        double prom = Math.floor((suma/cantCalificaciones)*10)/10.0;
-        //retornar promedio (suma calificaciones / cantCalificaciones)
-        return prom;
-    }
-
     @Override
     public Publicacion createPublicacion(Publicacion publicacion) {
         return publicacionRepository.save(publicacion);
@@ -84,5 +70,19 @@ public class PublicacionServiceImpl implements PublicacionService {
         if(publicacionRepository.existsById(id)){
             publicacionRepository.deleteById(id);
         }
+    }
+
+    private double promCalificaciones( ArrayList<Integer> calificaciones) {
+        //set variable para almacernar la suma de todas las calificaciones
+        double suma = 0;
+        //set cantidad de calificaciones
+        int cantCalificaciones = calificaciones.size();
+        //iterar calificaciones para obtener el total
+        for (int calificacion : calificaciones){
+            suma = suma+calificacion;
+        }
+        double prom = Math.floor((suma/cantCalificaciones)*10)/10.0;
+        //retornar promedio (suma calificaciones / cantCalificaciones)
+        return prom;
     }
 }
