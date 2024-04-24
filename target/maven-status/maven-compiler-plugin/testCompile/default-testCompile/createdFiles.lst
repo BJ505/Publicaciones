@@ -1,0 +1,4 @@
+com\example\publicacion\controller\PublicacionControllerTest.class
+com\example\publicacion\PublicacionApplicationTests.class
+com\example\publicacion\repository\ComentariosRepositoryTest.class
+com\example\publicacion\repository\PublicacionRepositoryTest.class

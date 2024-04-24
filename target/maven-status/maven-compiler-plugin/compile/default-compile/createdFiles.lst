@@ -1,0 +1,11 @@
+com\example\publicacion\model\Publicacion.class
+com\example\publicacion\PublicacionApplication.class
+com\example\publicacion\controller\PublicacionNotFoundException.class
+com\example\publicacion\service\ComentarioServiceImpl.class
+com\example\publicacion\controller\PublicacionController.class
+com\example\publicacion\service\PublicacionServiceImpl.class
+com\example\publicacion\service\PublicacionService.class
+com\example\publicacion\service\ComentarioService.class
+com\example\publicacion\repository\PublicacionRepository.class
+com\example\publicacion\model\Comentarios.class
+com\example\publicacion\repository\ComentariosRepository.class
